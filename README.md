@@ -11,7 +11,7 @@ Idea come from [pangu.js](https://github.com/vinta/pangu.js)
 
 ## Example
 
-![](https://github.com/MyHerux/vscode-chaos/blob/master/images/chaos.gif)
+![](https://github.com/MyHerux/vscode-chaos/raw/master/images/chaos.gif)
 
 ## Features
 
