@@ -1,9 +1,9 @@
 {
   "name": "chaos",
   "displayName": "chaos",
-  "description": "",
+  "description": "Chaos is a vscode plugin to add markdown grammer `` for your english words in markdown.",
   "version": "0.0.1",
-  "publisher": "y",
+  "publisher": "xu",
   "engines": {
     "vscode": "^1.18.0"
   },
@@ -33,8 +33,5 @@
     "mocha": "^2.3.3",
     "@types/node": "^6.0.40",
     "@types/mocha": "^2.2.32"
-  },
-  "dependencies": {
-    "pangu": "^3.3.0"
   }
 }

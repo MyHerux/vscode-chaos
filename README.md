@@ -11,7 +11,7 @@ Idea come from [pangu.js](https://github.com/vinta/pangu.js)
 
 ## Example
 
-![](images/chaos.gif)
+![](https://github.com/MyHerux/vscode-chaos/blob/master/images/chaos.gif)
 
 ## Features
 
@@ -23,7 +23,7 @@ Add chaos for your selection.
 
 ## Known Issues
 
-- You can report issues here [Github issues]()
+- You can report issues here [Github issues](https://github.com/MyHerux/vscode-chaos/issues)
 
 ## Release Notes
 
