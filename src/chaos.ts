@@ -43,6 +43,12 @@ const ansCJK = /([A-Za-z0-9`~\$%\^&\*\-=\+\\\|/!;:,\.\?\u00a1-\u00ff\u2022\u2026
 
 //add ansSymbol to match end of the sentence.
 const ansSymbol = /([A-Za-z0-9])([~!;,，。\.\?\u2026])/g;
+const Symbolans = /([~!;,，。\.\?\u2026])([A-Za-z0-9])/g;
+
+const enCJK=/([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])([A-Za-z0-9])/g;
+const CJKen=/([A-Za-z0-9])([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g;
+
+const spaceEn=/([\s])([A-Za-z0-9])/g;
 
 class Chaos {
 
@@ -79,7 +85,20 @@ class Chaos {
     return newText;
   }
 
+  english(text){
+    let newText = text;
+
+    newText = newText.replace(enCJK, '$1 `$2');
+    newText = newText.replace(CJKen, '$1` $2');
+    newText = newText.replace(ansSymbol, '$1` $2');
+    newText = newText.replace(spaceEn, '$1`$2');
+    newText = newText.replace(Symbolans, '$1 `$2');
+
+    return newText;
+  }
+
 }
+
 
 export {
   Chaos
