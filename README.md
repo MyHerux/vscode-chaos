@@ -13,6 +13,8 @@ Idea come from [pangu.js](https://github.com/vinta/pangu.js)
 
 ![](https://github.com/MyHerux/vscode-chaos/raw/master/images/chaos.gif)
 
+![](https://github.com/MyHerux/vscode-chaos/raw/master/images/chaos2.gif)
+
 ## Features
 
 Add chaos for your selection.
@@ -21,11 +23,23 @@ Add chaos for your selection.
 
 - Chaos: Add chaos for selection
 
+    Add chaos for english words and keywords.
+
+- Chaos: Add chaos_en for selection
+
+    Only add chaos for english words.
+
 ## Known Issues
 
 - You can report issues here [Github issues](https://github.com/MyHerux/vscode-chaos/issues)
 
 ## Release Notes
+
+### 0.0.7
+
+- fix some RegExp
+
+- add keywords for chaos
 
 ### 0.0.1
 

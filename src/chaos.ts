@@ -1,3 +1,7 @@
+import {
+  log
+} from "util";
+
 // CJK is short for Chinese, Japanese and Korean.
 //
 // The constant cjk contains following Unicode blocks:
@@ -42,61 +46,76 @@ const cjkANS = /([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u3
 const ansCJK = /([A-Za-z0-9`~\$%\^&\*\-=\+\\\|/!;:,\.\?\u00a1-\u00ff\u2022\u2026\u2027\u2150-\u218f])([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g;
 
 //add ansSymbol to match end of the sentence.
-const ansSymbol = /([A-Za-z0-9])([~!;,，。\.\?\u2026])/g;
-const Symbolans = /([~!;,，。\.\?\u2026])([A-Za-z0-9])/g;
+const ansSymbol = /([A-Za-z0-9`])([~!;,，。\)\.\?\u2026])/g;
+const Symbolans = /([~!;,，。\(\.\?\u2026])([A-Za-z0-9])/g;
 
-const enCJK=/([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])([A-Za-z0-9])/g;
-const CJKen=/([A-Za-z0-9])([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g;
+const enCJK = /([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])([A-Za-z0-9])/g;
+const CJKen = /([A-Za-z0-9)])([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g;
 
-const spaceEn=/([\s])([A-Za-z0-9])/g;
 
 class Chaos {
+
 
   spacing(text) {
     let newText = text;
 
-    newText = newText.replace(cjkQuote, '$1 `$2');
-    newText = newText.replace(quoteCJK, '$1` $2');
+    newText = newText.replace(cjkQuote, '$1 $2');
+    newText = newText.replace(quoteCJK, '$1 $2');
     newText = newText.replace(fixQuote, '$1$3$5');
     newText = newText.replace(fixSingleQuote, '$1$3$4');
 
-    newText = newText.replace(hashANSCJKhash, '$1 `$2$3$4` $5');
-    newText = newText.replace(cjkHash, '$1 `$2');
-    newText = newText.replace(hashCJK, '$1` $3');
+    newText = newText.replace(hashANSCJKhash, '$1 $2$3$4 $5');
+    newText = newText.replace(cjkHash, '$1 $2');
+    newText = newText.replace(hashCJK, '$1 $3');
 
-    newText = newText.replace(cjkOperatorANS, '$1 `$2` $3');
-    newText = newText.replace(ansOperatorCJK, '$1 `$2` $3');
+    newText = newText.replace(cjkOperatorANS, '$1 $2 $3');
+    newText = newText.replace(ansOperatorCJK, '$1 $2 $3');
 
     const oldText = newText;
-    const tmpText = newText.replace(cjkBracketCJK, '$1 `$2` $4');
+    const tmpText = newText.replace(cjkBracketCJK, '$1 $2 $4');
     newText = tmpText;
     if (oldText === tmpText) {
-      newText = newText.replace(cjkBracket, '$1 `$2');
-      newText = newText.replace(bracketCJK, '$1` $2');
+      newText = newText.replace(cjkBracket, '$1 $2');
+      newText = newText.replace(bracketCJK, '$1 $2');
     }
     newText = newText.replace(fixBracket, '$1$3$5');
 
     newText = newText.replace(fixSymbol, '$1$2 $3');
 
-    newText = newText.replace(ansSymbol, '$1` $2');
-    newText = newText.replace(cjkANS, '$1 `$2');
-    newText = newText.replace(ansCJK, '$1` $2');
+    newText = newText.replace(cjkANS, '$1 $2');
+    newText = newText.replace(ansCJK, '$1 $2');
 
     return newText;
   }
 
-  english(text){
+  english(text) {
     let newText = text;
 
     newText = newText.replace(enCJK, '$1 `$2');
     newText = newText.replace(CJKen, '$1` $2');
     newText = newText.replace(ansSymbol, '$1` $2');
-    newText = newText.replace(spaceEn, '$1`$2');
     newText = newText.replace(Symbolans, '$1 `$2');
 
     return newText;
   }
 
+  keyword(text, keywords) {
+    let newText = text;
+
+    newText = newText.replace(enCJK, '$1 `$2');
+    newText = newText.replace(CJKen, '$1` $2');
+    newText = newText.replace(ansSymbol, '$1` $2');
+    newText = newText.replace(Symbolans, '$1 `$2');
+
+    keywords.forEach((val, idx, array) => {
+      console.log(val)
+      let key = RegExp("(" + val + ")");
+      let keyGloble = RegExp(key, "g");
+      newText = newText.replace(keyGloble, ' `$1` ');
+    })
+
+    return newText;
+  }
 }
 
 

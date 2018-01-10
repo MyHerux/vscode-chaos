@@ -2,7 +2,7 @@
   "name": "chaos",
   "displayName": "chaos",
   "description": "Chaos is a vscode plugin to add markdown grammer `` for your english words in markdown.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publisher": "xu",
   "engines": {
     "vscode": "^1.18.0"
@@ -11,12 +11,23 @@
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "pangu",
+    "chaos",
+    "markdown",
+    "tag"
+],
+"repository": {
+  "type": "git",
+  "url": "https://github.com/MyHerux/vscode-chaos.git"
+},
   "activationEvents": [
     "*"
   ],
   "main": "./out/src/extension",
   "contributes": {
-    "commands": [{
+    "commands": [
+      {
         "command": "extension.add_chaos",
         "title": "Chaos: Add chaos for selection"
       },
@@ -27,13 +38,9 @@
     ],
     "keybindings": [
       {
-          "command": "extension.add_chaos",
-          "key": "alt+c"
-      },
-      {
         "command": "extension.add_chaos_en",
-        "key": "alt+e"
-    }
+        "key": "alt+c"
+      }
     ]
   },
   "scripts": {
@@ -48,5 +55,8 @@
     "mocha": "^2.3.3",
     "@types/node": "^6.0.40",
     "@types/mocha": "^2.2.32"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
   }
 }
