@@ -17,31 +17,31 @@ const KEYWORDS_PATTERN = /^---[ \t]*\n((?:[ \t]*[^ \t:]+[ \t]*:[^\n]*\n)+)---/;
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	let add_chaos = vscode.commands.registerCommand('extension.add_chaos', () => addKeywords());
+	let add_chaos_key = vscode.commands.registerCommand('extension.add_chaos', () => addKeywords());
 	let add_chaos_en = vscode.commands.registerCommand('extension.add_chaos_en', () => addChaosEnSelection());
+	let add_chaos_space = vscode.commands.registerCommand('extension.add_chaos_space', () => addChaosSpaceSelection());
 
-	context.subscriptions.push(add_chaos);
+	context.subscriptions.push(add_chaos_key);
 	context.subscriptions.push(add_chaos_en);
+	context.subscriptions.push(add_chaos_space);
 }
 
 function addKeywords() {
-	
 	let editor = vscode.window.activeTextEditor;
-
 	let document = editor.document;
-	let meta=exactKeywords(document.getText()).metadata;
-	let keywords=meta["keywords"];
+	let meta = exactKeywords(document.getText()).metadata;
+	let keywords = meta["keywords"];
 
 	let selections = editor.selections;
 	editor.edit(function (edit) {
 		for (var x = 0; x < selections.length; x++) {
 			let txt: string = document.getText(new vscode.Range(selections[x].start, selections[x].end));
-			edit.replace(selections[x], chaos.keyword(txt,keywords));
+			edit.replace(selections[x], chaos.keyword(txt, keywords));
 		}
 	});
 }
 
-function addChaosSelection() {
+function addChaosSpaceSelection() {
 	let editor = vscode.window.activeTextEditor;
 	let document = editor.document;
 	let selections = editor.selections;
