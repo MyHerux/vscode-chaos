@@ -91,6 +91,7 @@ class Chaos {
   english(text) {
     let newText = text;
 
+    newText = newText.replace(/\s+/g,"");
     newText = newText.replace(enCJK, '$1 `$2');
     newText = newText.replace(CJKen, '$1` $2');
     newText = newText.replace(ansSymbol, '$1` $2');
