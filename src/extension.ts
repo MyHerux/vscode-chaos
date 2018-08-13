@@ -7,7 +7,7 @@ import * as _ from "lodash";
 import {
 	Chaos
 } from "./chaos";
-import { connect } from 'net';
+
 
 let chaos = new Chaos();
 
