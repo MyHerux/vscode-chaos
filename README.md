@@ -35,6 +35,12 @@ Add chaos for your selection.
 
 ## Release Notes
 
+### 0.1.0
+
+- add space key
+
+- fix some RegExp
+
 ### 0.0.7
 
 - fix some RegExp
